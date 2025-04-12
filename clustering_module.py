@@ -5,7 +5,7 @@ import re
 import nltk
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.cluster import KMeans
 from collections import defaultdict
 
 nltk.download('stopwords')
@@ -37,50 +37,50 @@ def preprocess_questions(questions):
         processed.append(q)
     return processed
 
-def cluster_similar_questions(processed_questions, original_questions, similarity_threshold=0.8):
+def cluster_questions_kmeans(processed_questions, original_questions, num_clusters=5):
     tfidf = TfidfVectorizer()
     tfidf_matrix = tfidf.fit_transform(processed_questions)
-    cosine_sim = cosine_similarity(tfidf_matrix)
 
-    clustered = []
-    used = set()
+    kmeans = KMeans(n_clusters=num_clusters, random_state=42)
+    labels = kmeans.fit_predict(tfidf_matrix)
 
-    for i in range(len(cosine_sim)):
-        if i in used:
-            continue
-        group = [original_questions[i]]
-        used.add(i)
-        for j in range(i + 1, len(cosine_sim)):
-            if cosine_sim[i][j] > similarity_threshold and j not in used:
-                group.append(original_questions[j])
-                used.add(j)
-        clustered.append(group)
-    return clustered
+    clustered = defaultdict(list)
+    for idx, label in enumerate(labels):
+        clustered[label].append(original_questions[idx])
+    
+    return list(clustered.values())
 
-def label_clusters(clustered_questions):
+def label_clusters_by_rank(clustered_questions):
+    # Sort the clusters by the number of questions (size) in descending order
+    sorted_clusters = sorted(clustered_questions, key=lambda x: len(x), reverse=True)
+    
+    # Dynamically assign meaningful names based on cluster ranking
+    cluster_names = ["Most Frequently Asked", "Frequently Asked", "Less Frequently Asked", "Rarely Asked", "Asked Only Once"]
+    
     labeled = []
-    for group in clustered_questions:
-        count = len(group)
-        if count >= 5:
-            label = "Most Frequently Asked"
-        elif count >= 4:
-            label = "Frequently Asked"
-        elif count == 3:
-            label = "Less Frequently Asked"
-        elif count == 2:
-            label = "Rarely Asked"
+    for i, group in enumerate(sorted_clusters):
+        # If we have more than the 5 cluster names, we will just name them with "Cluster n"
+        if i < len(cluster_names):
+            label = cluster_names[i]
         else:
-            label = "Asked Only Once"
-        # Deduplicate inside the group
-        labeled.append((label, list(dict.fromkeys(group))))
+            label = f"Cluster {i+1}"  # Default name if there are more than 5 clusters
+        
+        # Create a frequency map of questions in this group
+        freq_map = {}
+        for q in group:
+            freq_map[q] = freq_map.get(q, 0) + 1
+        
+        labeled.append((label, freq_map))
     return labeled
 
-def group_by_labels(labeled_clusters):
-    grouped = defaultdict(list)
-    for label, group in labeled_clusters:
-        grouped[label].extend(group)
-    # Remove duplicates again across clusters
-    for key in grouped:
-        grouped[key] = list(dict.fromkeys(grouped[key]))
+def group_clusters_by_label(labeled_clusters):
+    grouped = defaultdict(dict)
+
+    for label, freq_map in labeled_clusters:
+        for question, count in freq_map.items():
+            if question not in grouped[label]:
+                grouped[label][question] = count
+            else:
+                grouped[label][question] += count
+
     return grouped
- 
