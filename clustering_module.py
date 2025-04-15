@@ -1,15 +1,16 @@
-# clustering_module.py
-
 import fitz  # PyMuPDF
 import re
 import nltk
 from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.cluster import KMeans
+from sentence_transformers import SentenceTransformer, util
 from collections import defaultdict
 
+# Setup
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
+
+# Load sentence embedding model once
+model = SentenceTransformer('all-MiniLM-L6-v2')
 
 def extract_questions_from_pdf(pdf_file):
     doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
@@ -23,10 +24,18 @@ def extract_questions_from_pdf(pdf_file):
         line = line.strip()
         if not line:
             continue
-        if re.match(r"DBMS Question Paper\s*-\s*\d{4}", line, re.IGNORECASE):
+
+        # Skip common titles or headers
+        if re.search(r"(question\s*paper|dbms|past\s*year|university|exam|semester)", line, re.IGNORECASE):
             continue
+
+        # Only include actual questions (those ending with a question mark)
+        if not line.endswith("?"):
+            continue
+
         questions.append(line)
     return questions
+
 
 def preprocess_questions(questions):
     processed = []
@@ -37,50 +46,59 @@ def preprocess_questions(questions):
         processed.append(q)
     return processed
 
-def cluster_questions_kmeans(processed_questions, original_questions, num_clusters=5):
-    tfidf = TfidfVectorizer()
-    tfidf_matrix = tfidf.fit_transform(processed_questions)
+def group_similar_questions(original_questions, similarity_threshold=0.8):
+    # Compute sentence embeddings
+    embeddings = model.encode(original_questions, convert_to_tensor=True)
 
-    kmeans = KMeans(n_clusters=num_clusters, random_state=42)
-    labels = kmeans.fit_predict(tfidf_matrix)
+    # Cluster based on cosine similarity
+    clusters = []
+    used = set()
 
-    clustered = defaultdict(list)
-    for idx, label in enumerate(labels):
-        clustered[label].append(original_questions[idx])
-    
-    return list(clustered.values())
+    for idx, emb in enumerate(embeddings):
+        if idx in used:
+            continue
 
-def label_clusters_by_rank(clustered_questions):
-    # Sort the clusters by the number of questions (size) in descending order
-    sorted_clusters = sorted(clustered_questions, key=lambda x: len(x), reverse=True)
-    
-    # Dynamically assign meaningful names based on cluster ranking
-    cluster_names = ["Most Frequently Asked", "Frequently Asked", "Less Frequently Asked", "Rarely Asked", "Asked Only Once"]
-    
+        cluster = [idx]
+        used.add(idx)
+
+        for jdx in range(idx + 1, len(embeddings)):
+            if jdx in used:
+                continue
+            sim = util.pytorch_cos_sim(emb, embeddings[jdx]).item()
+            if sim >= similarity_threshold:
+                cluster.append(jdx)
+                used.add(jdx)
+
+        clusters.append(cluster)
+
+    # Format clusters as list of question groups
+    grouped_questions = []
+    for cluster in clusters:
+        grouped = [original_questions[i] for i in cluster]
+        grouped_questions.append(grouped)
+
+    return grouped_questions
+
+def label_clusters_by_frequency(grouped_questions):
     labeled = []
-    for i, group in enumerate(sorted_clusters):
-        # If we have more than the 5 cluster names, we will just name them with "Cluster n"
-        if i < len(cluster_names):
-            label = cluster_names[i]
+    for group in grouped_questions:
+        rep_question = group[0]
+        frequency = len(group)
+
+        if frequency >= 4:
+            label = "🔴 Frequently Asked"
+        elif frequency >= 2:
+            label = "🟠 Occasionally Asked"
         else:
-            label = f"Cluster {i+1}"  # Default name if there are more than 5 clusters
-        
-        # Create a frequency map of questions in this group
-        freq_map = {}
-        for q in group:
-            freq_map[q] = freq_map.get(q, 0) + 1
-        
-        labeled.append((label, freq_map))
+            label = "🟢 Rarely Asked"
+
+        labeled.append((label, rep_question, frequency))
     return labeled
 
 def group_clusters_by_label(labeled_clusters):
-    grouped = defaultdict(dict)
+    grouped = defaultdict(list)
 
-    for label, freq_map in labeled_clusters:
-        for question, count in freq_map.items():
-            if question not in grouped[label]:
-                grouped[label][question] = count
-            else:
-                grouped[label][question] += count
+    for label, question, count in labeled_clusters:
+        grouped[label].append((question, count))
 
     return grouped
