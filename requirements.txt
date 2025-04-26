@@ -1,11 +1,11 @@
 PyMuPDF==1.23.21
 nltk==3.8.1
 sentence-transformers==2.2.2
-scikit-learn==1.4.1
+scikit-learn==1.4.0
 matplotlib==3.8.3
 torch==2.2.2
 pandas==2.2.2
 streamlit==1.33.0
-huggingface-hub==0.15.1
-rich==13.7.0
-transformers==4.33.2
+huggingface-hub==0.10.1
+rich==13.7.1
+transformers==4.38.2
