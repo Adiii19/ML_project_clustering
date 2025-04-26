@@ -1,0 +1,8 @@
+PyMuPDF==1.23.21
+nltk==3.8.1
+sentence-transformers==2.2.2
+scikit-learn==1.4.1
+matplotlib==3.8.3
+torch==2.2.2
+pandas==2.2.2
+streamlit==1.33.0
