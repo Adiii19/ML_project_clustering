@@ -1,15 +1,17 @@
-import fitz  # PyMuPDF
+import fitz
 import re
 import nltk
 from nltk.corpus import stopwords
 from sentence_transformers import SentenceTransformer, util
 from collections import defaultdict
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+import torch
+import pandas as pd  # ✅ Added for CSV export
 
-# Setup
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 
-# Load sentence embedding model once
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
 def extract_questions_from_pdf(pdf_file):
@@ -24,18 +26,12 @@ def extract_questions_from_pdf(pdf_file):
         line = line.strip()
         if not line:
             continue
-
-        # Skip common titles or headers
         if re.search(r"(question\s*paper|dbms|past\s*year|university|exam|semester)", line, re.IGNORECASE):
             continue
-
-        # Only include actual questions (those ending with a question mark)
         if not line.endswith("?"):
             continue
-
         questions.append(line)
     return questions
-
 
 def preprocess_questions(questions):
     processed = []
@@ -47,17 +43,14 @@ def preprocess_questions(questions):
     return processed
 
 def group_similar_questions(original_questions, similarity_threshold=0.8):
-    # Compute sentence embeddings
     embeddings = model.encode(original_questions, convert_to_tensor=True)
 
-    # Cluster based on cosine similarity
     clusters = []
     used = set()
 
     for idx, emb in enumerate(embeddings):
         if idx in used:
             continue
-
         cluster = [idx]
         used.add(idx)
 
@@ -71,7 +64,6 @@ def group_similar_questions(original_questions, similarity_threshold=0.8):
 
         clusters.append(cluster)
 
-    # Format clusters as list of question groups
     grouped_questions = []
     for cluster in clusters:
         grouped = [original_questions[i] for i in cluster]
@@ -101,4 +93,38 @@ def group_clusters_by_label(labeled_clusters):
     for label, question, count in labeled_clusters:
         grouped[label].append((question, count))
 
+    # ✅ Export to CSV
+    rows = []
+    for label, questions in grouped.items():
+        for question, count in questions:
+            rows.append({
+                "Cluster": label,
+                "Question": question,
+                "Count": count
+            })
+
+    df = pd.DataFrame(rows)
+    df.to_csv("clustered_questions2.csv", index=False)
+
     return grouped
+
+def generate_pca_plot(original_questions, grouped_questions):
+    labels = []
+    texts = []
+    for idx, group in enumerate(grouped_questions):
+        for q in group:
+            texts.append(q)
+            labels.append(idx)
+
+    embeddings = model.encode(texts, convert_to_tensor=True)
+
+    pca = PCA(n_components=2)
+    reduced = pca.fit_transform(embeddings.cpu().numpy())
+
+    plt.figure(figsize=(10, 7))
+    scatter = plt.scatter(reduced[:, 0], reduced[:, 1], c=labels, cmap='tab10', alpha=0.7)
+    plt.title("PCA of Question Embeddings")
+    plt.xlabel("PC1")
+    plt.ylabel("PC2")
+    plt.grid(True)
+    return plt

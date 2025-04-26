@@ -1,0 +1,33 @@
+Cluster,Question,Count
+🟠 Occasionally Asked,- What is a deadlock in database transactions?,3
+🟠 Occasionally Asked,- What is the purpose of the EXISTS operator in SQL?,2
+🟠 Occasionally Asked,- What is a composite key?,2
+🟠 Occasionally Asked,- Which operation combines the results of two queries?,3
+🟠 Occasionally Asked,- What is the difference between DELETE and TRUNCATE in SQL?,2
+🟠 Occasionally Asked,- What is the difference between OLTP and OLAP?,3
+🟠 Occasionally Asked,- What is referential integrity?,3
+🟠 Occasionally Asked,- Which SQL command is used to update records?,2
+🟠 Occasionally Asked,- What is the difference between CHAR and VARCHAR?,2
+🟠 Occasionally Asked,- Which SQL clause is used to sort results?,3
+🟠 Occasionally Asked,- What is the difference between INNER JOIN and OUTER JOIN?,2
+🟠 Occasionally Asked,- What is the use of the HAVING clause?,2
+🟠 Occasionally Asked,- What is an entity in a database?,2
+🟠 Occasionally Asked,- What is a schema in a database?,2
+🟠 Occasionally Asked,- What is a cursor in SQL?,2
+🟠 Occasionally Asked,- What is an ER model?,3
+🟠 Occasionally Asked,- What is a view in SQL?,2
+🟠 Occasionally Asked,- Which normal form removes partial dependency?,2
+🟠 Occasionally Asked,- What is the purpose of an index in a database?,3
+🟢 Rarely Asked,- What is denormalization?,1
+🟢 Rarely Asked,- How can you merge the outputs of two SQL queries?,1
+🟢 Rarely Asked,- What is normalization?,1
+🟢 Rarely Asked,- Why is normalization used in databases?,1
+🟢 Rarely Asked,- What is SQL injection?,1
+🟢 Rarely Asked,- What is a transaction in a database?,1
+🟢 Rarely Asked,- Which SQL keyword is used to fetch unique records?,1
+🟢 Rarely Asked,- How do you retrieve distinct entries in SQL?,1
+🟢 Rarely Asked,- What is the primary key in a database?,1
+🔴 Frequently Asked,- What is a foreign key?,4
+🔴 Frequently Asked,- What is a clustered index?,4
+🔴 Frequently Asked,- What is a surrogate key?,4
+🔴 Frequently Asked,- What is the role of a database management system?,4
