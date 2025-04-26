@@ -9,7 +9,7 @@ from clustering_module import (
     generate_pca_plot
 )
 
-st.set_page_config(page_title="Question Frequency Analyzer", layout="wide")
+st.set_page_config(page_title="Question Frequency Analyz", layout="wide")
 
 st.title("Question Paper Analyzer 📚")
 st.markdown(
