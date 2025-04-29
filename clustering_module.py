@@ -13,7 +13,7 @@ from sentence_transformers import SentenceTransformer
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 
-model = SentenceTransformer('./all-MiniLM-L6-v2')
+model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
 def extract_questions_from_pdf(pdf_file):
     doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
