@@ -9,7 +9,7 @@ from clustering_module import (
     generate_pca_plot
 )
 
-st.set_page_config(page_title="Question Frequency Analyz", layout="wide")
+st.set_page_config(page_title="Question Frequency Analyzer", layout="wide")
 
 st.title("Question Paper Analyzer 📚")
 st.markdown(
@@ -32,8 +32,11 @@ if uploaded_files:
     all_questions = []
 
     for uploaded_file in uploaded_files:
-        questions = extract_questions_from_pdf(uploaded_file)
-        all_questions.extend(questions)
+        try:
+            questions = extract_questions_from_pdf(uploaded_file)
+            all_questions.extend(questions)
+        except Exception as e:
+            st.error(f"❌ Failed to extract from {uploaded_file.name}: {str(e)}")
 
     if all_questions:
         st.success(f"✅ Extracted {len(all_questions)} questions from uploaded PDFs.")
@@ -44,8 +47,14 @@ if uploaded_files:
 
         for label, questions in grouped_results.items():
             with st.expander(f"{label} ({len(questions)} questions)"):
-                for q, count in questions:
-                    st.markdown(f"- **[{count} times]** {clean_for_display(q)}")
+                for q, count, similar_group in questions:
+                    if count > 1:
+                        st.markdown(f"**[{count} times]** {clean_for_display(q)}")
+                        if st.button(f"Show all similar versions for: {clean_for_display(q)}", key=f"btn_{clean_for_display(q)}"):
+                            for variant in similar_group:
+                                st.markdown(f"- {clean_for_display(variant)}")
+                    else:
+                        st.markdown(f"- **[1 time]** {clean_for_display(q)}")
 
         if show_pca:
             st.subheader("🧐 PCA Cluster Visualization of Question Embeddings")

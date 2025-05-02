@@ -1,33 +1,63 @@
 Cluster,Question,Count
-🟠 Occasionally Asked,- What is a deadlock in database transactions?,3
-🟠 Occasionally Asked,- What is the purpose of the EXISTS operator in SQL?,2
-🟠 Occasionally Asked,- What is a composite key?,2
-🟠 Occasionally Asked,- Which operation combines the results of two queries?,3
-🟠 Occasionally Asked,- What is the difference between DELETE and TRUNCATE in SQL?,2
-🟠 Occasionally Asked,- What is the difference between OLTP and OLAP?,3
-🟠 Occasionally Asked,- What is referential integrity?,3
-🟠 Occasionally Asked,- Which SQL command is used to update records?,2
-🟠 Occasionally Asked,- What is the difference between CHAR and VARCHAR?,2
-🟠 Occasionally Asked,- Which SQL clause is used to sort results?,3
-🟠 Occasionally Asked,- What is the difference between INNER JOIN and OUTER JOIN?,2
-🟠 Occasionally Asked,- What is the use of the HAVING clause?,2
-🟠 Occasionally Asked,- What is an entity in a database?,2
-🟠 Occasionally Asked,- What is a schema in a database?,2
-🟠 Occasionally Asked,- What is a cursor in SQL?,2
-🟠 Occasionally Asked,- What is an ER model?,3
-🟠 Occasionally Asked,- What is a view in SQL?,2
-🟠 Occasionally Asked,- Which normal form removes partial dependency?,2
-🟠 Occasionally Asked,- What is the purpose of an index in a database?,3
-🟢 Rarely Asked,- What is denormalization?,1
-🟢 Rarely Asked,- How can you merge the outputs of two SQL queries?,1
-🟢 Rarely Asked,- What is normalization?,1
-🟢 Rarely Asked,- Why is normalization used in databases?,1
-🟢 Rarely Asked,- What is SQL injection?,1
-🟢 Rarely Asked,- What is a transaction in a database?,1
-🟢 Rarely Asked,- Which SQL keyword is used to fetch unique records?,1
-🟢 Rarely Asked,- How do you retrieve distinct entries in SQL?,1
-🟢 Rarely Asked,- What is the primary key in a database?,1
-🔴 Frequently Asked,- What is a foreign key?,4
-🔴 Frequently Asked,- What is a clustered index?,4
-🔴 Frequently Asked,- What is a surrogate key?,4
-🔴 Frequently Asked,- What is the role of a database management system?,4
+🟠 Occasionally Asked,1. What is the probability of an electron being thermally excited to conduction band in Silicon at 20°C if the band gap is 1.12 eV. (Given: k=8.6 x 10^-5 eV/K).,2
+🟠 Occasionally Asked,4. What are the properties of matter waves?,3
+🟠 Occasionally Asked,6. Explain different phases of liquid crystal.,2
+🟠 Occasionally Asked,7. State de Broglie’s hypothesis. Deduce an expression for the wavelength of de Broglie’s matter waves.,2
+🟠 Occasionally Asked,"11. Explain the construction and working of Light Emitting Diode with the help of diagrams, State the merits, demerits and applications.",3
+🟠 Occasionally Asked,13. Write the expression for Schrodinger’s time dependent equation of matter waves.,2
+🟠 Occasionally Asked,16. Show that Fermi energy level lies in the center of the energy band gap in intrinsic semiconductor.,3
+🟠 Occasionally Asked,18. What is Meissner Effect? With the help of this effect show that superconductors are diamagnetic in nature.,2
+🟠 Occasionally Asked,20. An electron is bound in one dimensional potential well of width 2A° that of infinite height. Find its energy value in the first two exited states.,3
+🟠 Occasionally Asked,26. What are Multiferroic materials? Differentiate between Type I and Type II Multiferroics.,2
+🟠 Occasionally Asked,28. Derive the equations for optical path difference in a parallel thin film in reflected light system. Also find the conditions for maxima and minima.,2
+🟠 Occasionally Asked,31. Distinguish between Type I and Type II superconductors.,2
+🟠 Occasionally Asked,39. In Newton’s rings experiment the diameter of n^th and (n+10)^th bright rings are 5.2mm and 8.5mm respectively. Radius of curvature of the lower surface of lens is 200cm. Determine the wavelength of light?,2
+🟢 Rarely Asked,"2. Draw the following with reference to cubic unit cell: (121), (100) and (011).",1
+🟢 Rarely Asked,3. Explain why an extensively thin film appears black in reflected light.,1
+🟢 Rarely Asked,5. Explain at least three applications of super capacitors.,1
+🟢 Rarely Asked,8. State the conditions of Maxima and Minima in Newton's rings and derive expression for the diameter of dark ring in reflected light system.,1
+🟢 Rarely Asked,9. Explain with neat diagram construction of Bragg’s X-ray spectrometer and explain the procedure to determine crystal structure using it. Calculate the maximum order of diffraction if x-ray of wavelength 0.819A° is incident on a crystal with lattice spacing of 0.282nm.,1
+🟢 Rarely Asked,10. Discuss Heisenberg’s Uncertainty principle and prove that electrons cannot reside inside the nucleus of an atom using the same principle.,1
+🟢 Rarely Asked,12. Calculate electron and hole concentration in intrinsic silicon at room temperature if its electrical conductivity is 4x10^-4 mho/m. (mobility of electron=0.14 m^2/V-s & mobility of hole=0.04 m^2/V-s),1
+🟢 Rarely Asked,14. A wedge-shaped film of solution which had refractive index 1.28 was observed normally. The distance between successive bands was 0.15cm. The angle of wedge was 0.01°. Determine the wavelength of light used.,1
+🟢 Rarely Asked,15. Discuss the importance of critical temperature in superconductors. Differentiate between Type I and Type II superconductors.,1
+🟢 Rarely Asked,17. Show that group velocity of matter waves equal to particle velocity.,1
+🟢 Rarely Asked,19. Find the thickness of a thin film which will appear dark for sodium light (wavelength 5896 A°) in reflection when it is viewed at an angle of 45°. Given refractive index of the film is 1.33.,1
+🟢 Rarely Asked,"21. Find the miller indices of the plane in a cubic crystal having intercepts a, b/2, infinity and draw the plane for the same.",1
+🟢 Rarely Asked,22. Explain with reason if it is a bright or dark fringe at the edge in wedge shaped thin film set up in reflected light system.,1
+🟢 Rarely Asked,"24. Define the following terms: Wave packet, Phase velocity and Group velocity.",1
+🟢 Rarely Asked,25. What is energy density and power density?,1
+🟢 Rarely Asked,"29. Derive the expression for interplanar spacing in cubic crystals. The unit cell dimension of NaCl is 5.63 A°. If x-ray beam of wavelength 1.1 A° falls on a family of planes with a separation of d, how many orders of diffraction are visible?",1
+🟢 Rarely Asked,"33. A copper strip 0.02m wide and 2mm thick is placed in a magnetic field B= 2.5 Wb/m^2. If current of 300Amp is set up in the strip, calculate Hall voltage and charge density that appears across the strip. Given, Rh= 6 x 10^-7 m^3/C",1
+🟢 Rarely Asked,34. Explain the construction and working of electrolytic double layer capacitor (EDLC) with diagram.,1
+🟢 Rarely Asked,37. Explain the effect of doping concentration on fermi level in n-type semiconductor.,1
+🟢 Rarely Asked,"40. Draw the following planes in a cubic unit cell (121), (100), (011).",1
+🟢 Rarely Asked,41. The diameter of 5^th dark ring in Newton's ring experiment was found to be 0.42 cm. Determine the diameter of 10^th dark ring in the same set up.,1
+🟢 Rarely Asked,43. Define superconductivity and explain the terms critical temperature and critical magnetic field.,1
+🟢 Rarely Asked,"44. Find the resistivity of intrinsic germanium at 300 K. Given density of carriers is 2.5 x 10^19 /m^3, mobility of electrons is 0.39 m^2/volt-sec and mobility of holes is 0.19 m^2/volt-sec.",1
+🟢 Rarely Asked,46. Explain the formation of colours in thin film.,1
+🟢 Rarely Asked,"47. State Hall Effect. Obtain an expression for Hall voltage. Calculate the mobility of charge carriers in a doped Si, whose conductivity is 100 per ohm meter and Hall coefficient is 3.6 x 10^-6 m^3/C.",1
+🟢 Rarely Asked,49. Explain with neat diagram the effect of doping and temperature on the fermi level in N type extrinsic semiconductor. What is the probability of an electron being thermally excited to the conduction band in Si at 20° C. The band gap energy is 1.12 eV,1
+🟢 Rarely Asked,50. Show that the energy of an electron in a one-dimensional deep potential well of infinite height varies as the square of the natural numbers.,1
+🟢 Rarely Asked,51. Explain Bragg’s spectrometer for the investigation of crystal structure with the help of a neat diagram.,1
+🟢 Rarely Asked,52. Derive one dimensional Schrédinger’s time dependent equation for matter waves.,1
+🟢 Rarely Asked,"53. White light is incident on a soap film at an angle sin^-1(4/5) and the reflected light is observed with a spectroscope. It is found that two consecutive dark bands correspond to wavelength 6100 A° and 6000 A’. if the refractive index of the film is 4/3, calculate its thickness.",1
+🟢 Rarely Asked,"54. Find the de Broglie wavelength of (i) an electron accelerated through a potential difference of 182 Volts and (ii) 1 Kg object moving with a speed of 1 m/s. Comparing the results, explain why is the wave nature of matter not apparent in daily observations?",1
+🟢 Rarely Asked,55. Derive an expression for interplanar spacing in a cubic unit cell?,1
+🟢 Rarely Asked,56. Explain the principle and working of Supercapacitors?,1
+🟢 Rarely Asked,59. We wish to coat a flat slab of glass with refractive index 1.5 with a thinnest possible film of transparent material so that light of wavelength 600 nm incident normally is not reflected. We have two materials to choose from M1 (µ= 1.21) and M2 (µ=1.6). Which one would be appropriate? What will be the minimum thickness of coating?,1
+🟢 Rarely Asked,"60. Draw (0 0 2), (1 0 0), (0 1 1).",1
+🟢 Rarely Asked,62. Differentiate between Direct and Indirect band gap semiconductor.,1
+🟢 Rarely Asked,63. Explain any three conditions for Sustained Interference.,1
+🟢 Rarely Asked,64. A source is emitting 150W of red light of wavelength of 600nm. How many photons are emitted by the source per minute?,1
+🟢 Rarely Asked,65. Explain the Meissner effect with application.,1
+🟢 Rarely Asked,66. Explain construction and working of LED.,1
+🟢 Rarely Asked,"67. Show that Non Existence of electron in the Nucleus. Find the uncertainty in the position of electron, The speed of an electron is measured to be 4.0 x 10^6 m/s to an accuracy of 0.002% .",1
+🟢 Rarely Asked,69. Explain with diagram Bragg's X Ray Spectrometer . Calculate the interplaner spacing between the family of planes (1 1 1) in crystal of lattice constant 3A°.,1
+🟢 Rarely Asked,71. Derive one dimensional time independent Schrodinger Equation.,1
+🟢 Rarely Asked,"73. Find Resistance of an intrinsic Ge rod of dimensions ( 1cm long , 1mm wide and 1mm thick) at 300K . For Ge ni= 2.5 x 10^19/m^3 , µn = 0.39m^2/v-s, µp = 0.19m^2/v-s",1
+🟢 Rarely Asked,74. Derive the condition for maxima and minima due to interference of light reflected from thin film of uniform thickness.,1
+🟢 Rarely Asked,75. Explain Hall Effect . Derive the equation for Hall Voltage.,1
+🟢 Rarely Asked,76. Calculate the lowest three energy states of an electron confined in potential well of width 10A°.,1
+🟢 Rarely Asked,78. A soap film 4x10^-5 cm thick is viewed at angle of 35° to normal. Calculate Wavelength of light in the visible spectrum which will be absent from the Reflected light ( µ= 1.33),1
+🟢 Rarely Asked,79. The Coefficient (Rh) of semiconductor is 3.22 x 10^-4 m^3c^-1 . Its resistivity is 9X 10^-3 Ωm . Calculate the mobility and concentration of carriers.,1
