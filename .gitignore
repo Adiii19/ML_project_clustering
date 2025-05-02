@@ -1,5 +1,24 @@
+# Virtual Environment
+myenv/
 venv/
+env/
+.env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+
+# Dependencies
+*.pyd
 *.dll
 *.lib
-__pycache__/
-*.pyc
+
+# IDE
+.vscode/
+.idea/
+
+# Other
+*.log
+.DS_Store
