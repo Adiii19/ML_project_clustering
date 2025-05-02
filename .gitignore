@@ -11,9 +11,10 @@ __pycache__/
 .Python
 
 # Dependencies
-*.pyd
-*.dll
-*.lib
+**/cv2/
+**/paddle/
+**/torch/
+**/tensorflow/
 
 # IDE
 .vscode/
